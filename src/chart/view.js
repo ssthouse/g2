@@ -526,9 +526,10 @@ class View extends Base {
   /**
    * 获取逼近的点的数据集合
    * @param  {Object} point 画布上的像素点
+   * @param  {Boolean} useForceSearch 是否使用遍历搜索
    * @return {Array} 数据
    */
-  getSnapRecords(point) {
+  getSnapRecords(point, useForceSearch) {
     const self = this;
     const geoms = self.get('geoms');
     const rst = [];
@@ -536,7 +537,7 @@ class View extends Base {
       const dataArray = geom.get('dataArray');
       let record;
       Util.each(dataArray, function(data) {
-        record = geom.findPoint(point, data);
+        record = geom.findPoint(point, data, useForceSearch);
         record && rst.push(record);
       });
     });

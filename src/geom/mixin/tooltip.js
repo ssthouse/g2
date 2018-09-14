@@ -178,7 +178,7 @@ const TooltipMixin = {
     return distance;
   },
 
-  findPoint(point, dataArray) {
+  findPoint(point, dataArray, useForceSearch) {
     const self = this;
     const type = self.get('type');
     const xScale = self.getXScale();
@@ -187,7 +187,7 @@ const TooltipMixin = {
     const yField = yScale.field;
     let rst = null;
 
-    if (Util.indexOf([ 'heatmap' ], type) > -1) {
+    if (Util.indexOf([ 'heatmap' ], type) > -1 || useForceSearch) {
       const coord = self.get('coord');
       const invertPoint = coord.invert(point);
       const xValue = xScale.invert(invertPoint.x);
